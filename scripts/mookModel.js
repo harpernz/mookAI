@@ -197,7 +197,7 @@ export class MookModel
 	get targetHistory () { return this._targetHistory; }
 
 	// Override as needed
-	get attacksPerTurn () { return 1; }
+	get attacksPerTurn () { return 2; }
 	get canAttack () { return this.attacksRemaining > 0; }
 	// Can the token do something to increase its movement range?
 	get canZoom () { return this.zoomsRemaining > 0; }

@@ -76,7 +76,7 @@ export class MookModelSettings5e extends MookModelSettings
 		super (token_);
 
 		this.actionsPerTurn = 1;
-		this.attacksPerAction = 1;
+		this.attacksPerAction = 2;
 
 		this.hasBonusAttack = false;
 		this.attacksPerBonusAction = 1;

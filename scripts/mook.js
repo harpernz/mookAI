@@ -293,6 +293,8 @@ export class Mook
 				break;
 			case (ActionType.TARGET):
 				if (this.debug) console.log ("Targeting");
+debugger;
+ChatMessage.create({content: "Attacking " + action.data.target.name});
 				this.target (action.data.target);
 				break;
 			case (ActionType.ATTACK):
@@ -311,42 +313,6 @@ export class Mook
 				{
 					this.utility.path = action.data.path;
 					this.utility.highlightPoints (action.data.path.path.map (s => s.origin));
-				}
-
-				let dialogContent = "<p>Take action?</p>";
-
-				if (this.token.actor.hasPlayerOwner)
-					dialogContent = this.pcWarning + dialogContent;
-	
-				let dialogPromise = new Promise ((resolve, reject) => {
-					const dialog = new Dialog ({
-						title: "Confirm Mook Action",
-						content: dialogContent,
-						buttons: {
-							approve: {
-								label: game.i18n.localize ("Approve"),
-								callback: () => { resolve (); }
-							},
-							reject: {
-								label: game.i18n.localize ("Reject"),
-								callback: () => { reject (); }
-							}
-						},
-						default: "approve",
-						close: reject
-					});
-
-					dialog.render (true);
-					dialog.position.top = 120;
-					dialog.position.left = 120;
-				});
-
-				try {
-					await dialogPromise;
-				}
-				catch (error)
-				{
-					this.handleFailure (new Abort ("User aborted plan"));
 				}
 
 				if (action.cost > 0)
